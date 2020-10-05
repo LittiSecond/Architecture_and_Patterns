@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Lesson1.Task1
 {
@@ -11,15 +10,15 @@ namespace Lesson1.Task1
     {
         public long Id { get; private set; }
 
-        public EntityBase()
-        {
-            Id = CalculateId();
-        }
+        private IIdGenerator _idGenerator;
 
-        private long CalculateId()
+        public EntityBase(IIdGenerator idGenerator)
         {
-            long id = DateTime.Now.Ticks;
-            return id;
+            _idGenerator = idGenerator;
+            if (_idGenerator != null)
+            {
+                Id = _idGenerator.CalculateId();
+            }
         }
 
         public override string ToString()
@@ -32,7 +31,7 @@ namespace Lesson1.Task1
     {
         public string Description { get; set; }
 
-        public Customer()
+        public Customer(IIdGenerator idGenerator) : base(idGenerator)
         { }
 
         public override string ToString()
@@ -44,7 +43,7 @@ namespace Lesson1.Task1
 
     public class Store : EntityBase
     {
-        public Store()
+        public Store(IIdGenerator idGenerator) : base(idGenerator)
         { }
 
         public override string ToString()
@@ -53,14 +52,29 @@ namespace Lesson1.Task1
         }
     }
 
+    public interface IIdGenerator
+    {
+        long CalculateId();
+    }
+
+    public class DefaultIdGenerator : IIdGenerator
+    {
+        public long CalculateId()
+        {
+            long id = DateTime.Now.Ticks;
+            return id;
+        }
+    }
 
     public static class Task1
     {
         public static void MainTask1()
         {
-            Customer c1 = new Customer();
+            DefaultIdGenerator idGenerator = new DefaultIdGenerator();
+
+            Customer c1 = new Customer(idGenerator);
             c1.Description =  "c1 description";
-            Store s1 = new Store();
+            Store s1 = new Store(idGenerator);
 
             Console.WriteLine(c1.ToString());
             Console.WriteLine(s1.ToString());
