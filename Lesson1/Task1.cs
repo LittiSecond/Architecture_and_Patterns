@@ -21,6 +21,11 @@ namespace Lesson1.Task1
             long id = DateTime.Now.Ticks;
             return id;
         }
+
+        public override string ToString()
+        {
+            return $"Id = {Id} ";
+        }
     }
 
     public class Customer : EntityBase
@@ -29,12 +34,23 @@ namespace Lesson1.Task1
 
         public Customer()
         { }
+
+        public override string ToString()
+        {
+            return $"Customer: {base.ToString()}; {Description}";
+        }
+
     }
 
     public class Store : EntityBase
     {
         public Store()
         { }
+
+        public override string ToString()
+        {
+            return "Store: " + base.ToString();
+        }
     }
 
 
@@ -42,7 +58,13 @@ namespace Lesson1.Task1
     {
         public static void MainTask1()
         {
-            Console.WriteLine("MainTask1");
+            Customer c1 = new Customer();
+            c1.Description =  "c1 description";
+            Store s1 = new Store();
+
+            Console.WriteLine(c1.ToString());
+            Console.WriteLine(s1.ToString());
+
         }
     }
 }
