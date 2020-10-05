@@ -7,6 +7,9 @@ namespace Lesson1
     {
         static void Main(string[] args)
         {
+            Task1.Task1.MainTask1();
+            Console.WriteLine("------");
+
             Task2.Task2.MainTask2();
             Console.WriteLine("------");
 
