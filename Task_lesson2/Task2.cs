@@ -11,24 +11,49 @@ namespace Task_lesson2.Task2
     (книги, автомобили и т. п.), соблюдая принципы SOLID? 
      */
 
+    /*
+     Нужно внести изменения:
+    1.  Добавить интерфейс предназначенный только для одежды
+    2.  Перенести методы, предназначенные для одержды из IItem в интерфейс для одержды
+    3.  Изменить наследования класса Clothes на IClothes
+    4.  Добавить специализированные интерфейсы для каждого вида товара   
+
+     * */
     interface IItem
     {
         void SetDiscount(double discount);
         void SetPromocode(string promocode);
-
-        void SetColor(Color color);
-        void SetSize(Size size);
-
         void SetPrice(double price);
     }
 
-    class Clothes : IItem
+    interface IClothes : IItem
+    {
+        void SetColor(Color color);
+        void SetSize(Size size);
+        void SetMaterial(Material material);
+    }
+
+    interface IBook : IItem
+    {
+        string SetTitle(string title);
+        string SetAuthor(string autor);
+    }
+
+    interface ICar : IItem
+    {
+        string SetMark(string mark);
+        string SetModel(string model);
+    }
+
+    class Clothes : IClothes
     {
         public void SetColor(Color color) { }
         public void SetDiscount(double discount) { }
+        public void SetMaterial(Material material) { }
         public void SetPrice(double price) { }
         public void SetPromocode(string promocode) { }
         public void SetSize(Size size) { }
+
     }
 
     struct Color
@@ -39,6 +64,11 @@ namespace Task_lesson2.Task2
     struct Size
     {
         int size;
+    }
+
+    class Material
+    {
+
     }
 
     class Task2
