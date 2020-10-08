@@ -10,6 +10,13 @@ namespace Task_lesson2.Task1
     Какие изменения нам надо будет внести?
      */
 
+    /*
+     Нужно внести изменения:
+     1. в классе OrderRepository сделать публичные методы виртуальными;
+     2. добавить класс дла работы со сторониим веб-сервисом, наследованным от OrderRepository
+     3. переопределить методы в добавленном классе
+     */
+
     class Order
     {
         int orderId;
@@ -18,30 +25,58 @@ namespace Task_lesson2.Task1
 
     class OrderRepository
     {
-        public Order Load(int orderId) 
+        public virtual Order Load(int orderId) 
         {
             Order order = new Order();
             //
-            //  Извлечения данных из базы данных и сохранение в order.
+            //  Извлечения данных из базы данных MySQL и сохранение в order.
             //
             return order;
         }
 
-        public void Save(Order order) 
+        public virtual void Save(Order order) 
         {
-            
+            // действия с БД MySQL
         }
 
-        public void Update(Order order) 
+        public virtual void Update(Order order) 
         {
-        
+            // действия с БД MySQL
         }
 
-        public void Delete(Order order) 
+        public virtual void Delete(Order order) 
         {
-        
+            // действия с БД MySQL
         }
     }
+
+    class OrderExternalServis : OrderRepository
+    {
+        public override Order Load(int orderId)
+        {
+            Order order = new Order();
+            //
+            //  Получение данных от стороннего сервиса и сохранение в order.
+            //
+            return order;
+        }
+
+        public override void Save(Order order)
+        {
+            // действия со сторонним сервисом 
+        }
+
+        public override void Update(Order order)
+        {
+            // действия со сторонним сервисом 
+        }
+
+        public override void Delete(Order order)
+        {
+            // действия со сторонним сервисом 
+        }
+    }
+
 
     class Task1
     {
