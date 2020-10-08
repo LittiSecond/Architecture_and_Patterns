@@ -31,6 +31,15 @@ namespace Task_lesson2.Task2
         public void SetSize(Size size) { }
     }
 
+    struct Color
+    {
+        int color;
+    }
+
+    struct Size
+    {
+        int size;
+    }
 
     class Task2
     {
