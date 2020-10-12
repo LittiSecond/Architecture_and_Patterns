@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Lesson3.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DefaultCarFactory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lesson3.Part1.CarFactory</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
