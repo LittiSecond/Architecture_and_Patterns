@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task_lesson4
 {
@@ -10,6 +6,12 @@ namespace Task_lesson4
     {
         static void Main(string[] args)
         {
+            Task1.Task1.ExecuteTask1();
+            Console.WriteLine("------");
+
+
+            Console.ReadKey();
+
         }
     }
 }
