@@ -5,6 +5,8 @@ using System.Threading;
 namespace Task_lesson4.Task1
 {
     // Задание 1. Реализовать шаблон «Одиночка» для многопоточной программы с использованием оператора lock.
+    // Задание 2. Реализовать шаблон «Одиночка» для многопоточной программы с использованием класса Lazy<T>.
+
 
     // Начал делать, начало не получаться, не понимаю, почему  
     // Coutner часто не досчитывается нескольких тиков после окончания работы всех потоков
@@ -18,9 +20,10 @@ namespace Task_lesson4.Task1
     //        Coutner++;
     //    }
     //}
-
     //
     // для исследования, что происходит, начал писать больше всяких функций и экспериментов
+    //
+    // проблема решена, понадобилось добавить блокировку в свойстве Instance
 
 
     class SingletonCounter
@@ -33,9 +36,12 @@ namespace Task_lesson4.Task1
         {
             get
             {
-                if (_instance == null)
+                lock (_loker)
                 {
-                    _instance = new SingletonCounter();
+                    if (_instance == null)
+                    {
+                        _instance = new SingletonCounter();
+                    }
                 }
                 return _instance;
             }
@@ -51,7 +57,10 @@ namespace Task_lesson4.Task1
             }
         }
 
-        private SingletonCounter() { }
+        private SingletonCounter() 
+        {
+            Console.WriteLine("SingletonCounter::SingletonCounter:"); // эта строчка помогла найти проблему
+        }
 
     }
 
