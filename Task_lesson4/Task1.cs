@@ -7,43 +7,27 @@ namespace Task_lesson4.Task1
     // Задание 1. Реализовать шаблон «Одиночка» для многопоточной программы с использованием оператора lock.
     // Задание 2. Реализовать шаблон «Одиночка» для многопоточной программы с использованием класса Lazy<T>.
 
-
-    // Начал делать, начало не получаться, не понимаю, почему  
-    // Coutner часто не досчитывается нескольких тиков после окончания работы всех потоков
-    //
-    //  код одиночки, изменяющий Coutner:
-    //
-    //public void IncrementCounter()
-    //{
-    //    lock (_loker)
-    //    {
-    //        Coutner++;
-    //    }
-    //}
-    //
-    // для исследования, что происходит, начал писать больше всяких функций и экспериментов
-    //
-    // проблема решена, понадобилось добавить блокировку в свойстве Instance
-
-
     class SingletonCounter
     {
+        private static Lazy<SingletonCounter> _lazyInstance = new Lazy<SingletonCounter>(() => new SingletonCounter() );
+        // Func<T>
+        // не понимаю запись "() => new SingletonCounter() ", но это позволяет оставить конструктор private
 
-        private static SingletonCounter _instance = null;
         private static Object _loker = new Object();
 
         public static SingletonCounter Instance
         {
             get
             {
+
+                SingletonCounter instance;
+
                 lock (_loker)
                 {
-                    if (_instance == null)
-                    {
-                        _instance = new SingletonCounter();
-                    }
+                    instance = _lazyInstance.Value;
                 }
-                return _instance;
+
+                return instance;
             }
         }
 
@@ -57,9 +41,9 @@ namespace Task_lesson4.Task1
             }
         }
 
-        private SingletonCounter() 
+        private SingletonCounter()
         {
-            Console.WriteLine("SingletonCounter::SingletonCounter:"); // эта строчка помогла найти проблему
+            Console.WriteLine("SingletonCounter::SingletonCounter:"); 
         }
 
     }
