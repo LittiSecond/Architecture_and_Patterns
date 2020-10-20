@@ -54,8 +54,15 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GraphicHandler.cs" />
+    <Compile Include="IDrawShapeAPI.cs" />
+    <Compile Include="MyCircle.cs" />
+    <Compile Include="MyRect.cs" />
+    <Compile Include="NullShape.cs" />
+    <Compile Include="PictureElement.cs" />
+    <Compile Include="PictureLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShapeCollection.cs" />
     <Compile Include="TimeHandler.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
