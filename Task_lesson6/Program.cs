@@ -13,19 +13,55 @@ namespace Task_lesson6
 {
     class Program
     {
+        private static Staff _staff;
+        private static ConsoleLogger _logger;
+
         static void Main(string[] args)
         {
-            ConsoleLogger logger = new ConsoleLogger();
+            _logger = new ConsoleLogger();
 
-            Staff staff = new Staff();
-            staff.Logger = logger;
+            _staff = new Staff();
+            _staff.Logger = _logger;
 
-            LoadStaff(staff);
-            
-            
+            LoadStaff(_staff);
+
+            Console.WriteLine("----------");
+
+            SendRequestToGetMoney(204 ,35000.1);
+
+            Console.WriteLine("----------");
+
+            SendRequestToGetMoney(204, 21000.8);
+
+            Console.WriteLine("----------");
+
+            SendRequestToGetMoney(204, 140000.0);
+
             Console.WriteLine("----------");
 
             Console.ReadKey();
+        }
+
+        private static void SendRequestToGetMoney(int workerId, double summ)
+        {
+            IPost post = _staff.GetPost(workerId);
+            IWorker worker = post as IWorker;
+            if (worker != null)
+            {
+                MoneyRequest request = new MoneyRequest("На дополнительные командировочные расходы.", summ);
+
+                bool isApprove = worker.SendMoneyRequest(request);
+
+                if (isApprove)
+                {
+                    _logger.Log($"Запрос на сумму {summ} одобрен.");
+                }
+                else
+                {
+                    _logger.Log($"Запрос на сумму {summ} отклонён.");
+                }
+            }
+
         }
 
         /// <summary>
@@ -50,7 +86,6 @@ namespace Task_lesson6
             staff.SetInferrior(203, 207);
             staff.SetInferrior(101, 203);
 
-
             staff.AddEmployee(1001, "ИмяРаботника1", "ФамилияРаботника1");
             staff.AddEmployee(1002, "ИмяДиректора", "ФамилияДиректора");
             staff.AddEmployee(1003, "ИмяНачальника3", "ФамилияНачальника3");
@@ -67,6 +102,17 @@ namespace Task_lesson6
             staff.SetEmployeeToPost(1006, 305);
             staff.SetEmployeeToPost(9999, 207);
 
+            SetApproveLimit();
+        }
+
+        private static void SetApproveLimit()
+        {
+            IPost post = _staff.GetPost(203);
+            IDepartamentChief chief = post as IDepartamentChief;
+            if (chief != null)
+            {
+                chief.ApproveLimit = 30000.0;
+            }
         }
     }
 }

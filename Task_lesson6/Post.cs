@@ -3,7 +3,7 @@
 
 namespace Task_lesson6
 {
-    abstract class Post
+    abstract class Post : IPost
     {
         protected List<Post> _inferiors;
         private ILogger _logger;
@@ -60,7 +60,9 @@ namespace Task_lesson6
             }
         }
 
-        private void Log(string message)
+        public abstract bool WorkRequest(Request request);
+
+        protected void Log(string message)
         {
             if (_logger != null)
             {

@@ -47,11 +47,17 @@
     <Compile Include="DepartamentChief.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="Emoloyee.cs" />
+    <Compile Include="IDepartamentChief.cs" />
     <Compile Include="ILogger.cs" />
+    <Compile Include="IPost.cs" />
+    <Compile Include="IWorker.cs" />
+    <Compile Include="MoneyRequest.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="PostType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="RequestWorkResultType.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>

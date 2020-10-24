@@ -179,5 +179,17 @@ namespace Task_lesson6
             }
         }
 
+        public IPost GetPost(int postId)
+        {
+            IPost post = null;
+
+            if (_posts.ContainsKey(postId))
+            {
+                post = _posts[postId];
+            }
+
+            return post;
+        }
+
     }
 }
