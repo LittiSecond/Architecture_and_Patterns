@@ -50,6 +50,7 @@
             this.DoActionButton.TabIndex = 1;
             this.DoActionButton.Text = "Работать";
             this.DoActionButton.UseVisualStyleBackColor = true;
+            this.DoActionButton.Click += new System.EventHandler(this.DoActionButton_Click);
             // 
             // OutputListBox
             // 

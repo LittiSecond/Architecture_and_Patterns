@@ -52,8 +52,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IController.cs" />
+    <Compile Include="IStringContainerModelEventer.cs" />
+    <Compile Include="IStringContainerWiev.cs" />
+    <Compile Include="IStringContainerModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringContainerController.cs" />
+    <Compile Include="StringContainerModel.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

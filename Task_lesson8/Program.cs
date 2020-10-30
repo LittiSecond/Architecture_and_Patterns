@@ -1,11 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Task_lesson8
 {
+    /*
+     * Задание 1. Используя шаблон MVC, разработать следующее приложение: на форме расположен 
+     * textbox,  listbox и button. После ввода текста в textbox введенная строка добавляется в 
+     * коллекцию значений в модели, а затем добавленная строка отображается в listbox.
+     * */
+
+
     static class Program
     {
         /// <summary>
@@ -16,7 +20,10 @@ namespace Task_lesson8
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form1 form = new Form1();
+            StringContainerModel model = new StringContainerModel();
+            StringContainerController controller = new StringContainerController(form, model);
+            Application.Run(form);
         }
     }
 }
