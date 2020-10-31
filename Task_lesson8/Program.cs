@@ -20,9 +20,13 @@ namespace Task_lesson8
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Form1 form = new Form1();
             StringContainerModel model = new StringContainerModel();
             StringContainerController controller = new StringContainerController(form, model);
+            form.StringContainerController = controller;
+            form.StringContainerModelEventer = model;
+
             Application.Run(form);
         }
     }

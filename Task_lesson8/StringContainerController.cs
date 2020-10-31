@@ -12,9 +12,7 @@ namespace Task_lesson8
         public StringContainerController(IStringContainerWiev view, IStringContainerModel model)
         {
             _view = view;
-            _view.StringContainerController = this;
             _model = model;
-            _view.StringContainerModelEventer = model as IStringContainerModelEventer;
             _lastString = String.Empty;
         }
 
